@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f6f6f6; //cor pastel de fundo
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #ffffff; // Fundo branco 
+  padding: 30px;
+  border-radius: 16px; //arrendondar as bordas 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+  background-color: #fef4f2; //cor de fundo estilo lofi como lucas pediu
+}
+
+h2 {
+  color: #5f6368; //cor suave
+  margin-bottom: 10px;
+}
+
+p {
+  color: #8a9a5b; //pastel
+  margin-bottom: 20px;
+}
+
+.campo {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #8a9a5b; //pastel suave
+}
+
+.campo input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d0e0c6; //borda suave
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f7f9eb; //fundo suave
+  color: #8a9a5b; // texto tipo pastel
+}
+
+.campo input:focus {
+  border-color: #b9d3c2; //contraste quadno selecionado
+  outline: none;
+}
+
+button.btn-login {
+  width: 100%;
+  padding: 14px;
+  background-color: #a4c8e2; //cor do botão
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.btn-login:disabled {
+  background-color: #d1e3e4; //desabilitada
+}
+
+button.btn-login:hover:not(:disabled) {
+  background-color: #789cc4; // contraste do mouse
+}
+
+.erro {
+  color: #e67e7e; // cor do erro
+  margin-top: 10px;
+}
+
+.opcoes {
+  margin-top: 20px;
+}
+
+.opcoes a {
+  color: #a4c8e2; // cor do link
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.opcoes a:hover {
+  text-decoration: underline;
+}
