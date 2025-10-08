@@ -1,72 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert } from 'react-native';
 
-export default function CriarPedido({ onNavigate, doceSelecionado }) {
-  const [item, setItem] = useState('');
+export default function CriarPedido({ onNavigate, adicionarPedido, doceSelecionado }) {
+  const doces = ['Bolos', 'Sorvete', 'Cookies', 'Açaí']; 
   const [endereco, setEndereco] = useState('');
 
-  // Preenche automaticamente o item com o doce selecionado
-  useEffect(() => {
-    if (doceSelecionado) {
-      setItem(doceSelecionado);
+  const handleCriarPedido = () => {
+    if (!doceSelecionado) {
+      Alert.alert('Erro', 'Selecione um doce!');
+      return;
     }
-  }, [doceSelecionado]);
-
-  const handleCriarPedido = async () => {
-    if (!item || !endereco) {
-      Alert.alert('Erro', 'Todos os campos são obrigatórios!');
+    if (!endereco) {
+      Alert.alert('Erro', 'Preencha o endereço de entrega');
       return;
     }
 
-    try {
-      const response = await fetch('http://192.168.X.X:3000/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ item, endereco }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        Alert.alert('Sucesso', `Pedido de ${item} criado com sucesso!`);
-        setEndereco('');
-      } else {
-        Alert.alert('Erro', data.error || 'Não foi possível criar o pedido');
-      }
-    } catch (error) {
-      Alert.alert('Erro', 'Falha na conexão com o servidor');
-    }
+    const novoPedido = { id: Date.now().toString(), item: doceSelecionado, endereco };
+    adicionarPedido(novoPedido);
+    setEndereco('');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Item selecionado:</Text>
-      <TextInput
-        style={styles.input}
-        value={item}
-        onChangeText={setItem}
-        editable={false} // impede que o usuário altere o item
-      />
+      <Text style={styles.title}>Criar Pedido</Text>
 
-      <Text style={styles.label}>Endereço:</Text>
+      <Text style={styles.label}>Selecione o doce:</Text>
+      <View style={styles.optionsContainer}>
+        {doces.map((doce) => (
+          <TouchableOpacity
+            key={doce}
+            style={[
+              styles.optionButton,
+              doceSelecionado === doce && styles.optionButtonSelected
+            ]}
+            onPress={() => onNavigate('pedido', { doce })}
+          >
+            <Text
+              style={[
+                styles.optionText,
+                doceSelecionado === doce && styles.optionTextSelected
+              ]}
+            >
+              {doce}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <Text style={styles.label}>Endereço de entrega:</Text>
       <TextInput
         style={styles.input}
         value={endereco}
         onChangeText={setEndereco}
-        placeholder="Digite o endereço"
+        placeholder="Digite o endereço completo"
+        placeholderTextColor="#f77ca9"
       />
 
       <TouchableOpacity style={styles.button} onPress={handleCriarPedido}>
         <Text style={styles.buttonText}>Criar Pedido</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button, { backgroundColor: '#f1c0d6' }]} onPress={() => onNavigate('opcoes')}>
+        <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center' },
-  label: { fontSize: 16, marginBottom: 5 },
-  input: { borderWidth: 1, borderColor: '#aaa', borderRadius: 5, padding: 10, marginBottom: 15, backgroundColor: '#fff' },
-  button: { backgroundColor: '#4CAF50', padding: 15, borderRadius: 5, alignItems: 'center' },
-  buttonText: { color: '#fff', fontWeight: 'bold' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20, backgroundColor: '#f7a8b8' },
+  title: { fontSize: 32, fontWeight: 'bold', color: '#fff', marginBottom: 30 },
+  label: { fontSize: 18, color: '#fff', alignSelf: 'flex-start', marginLeft: '5%', marginBottom: 10, fontWeight: '600' },
+  optionsContainer: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 20 },
+  optionButton: {
+    width: '45%',
+    paddingVertical: 15,
+    marginVertical: 5,
+    borderRadius: 15,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  optionButtonSelected: { backgroundColor: '#f77ca9' },
+  optionText: { fontSize: 16, color: '#333', fontWeight: '600' },
+  optionTextSelected: { color: '#fff' },
+  input: { width: '90%', padding: 15, marginBottom: 15, borderWidth: 1, borderColor: '#f1c0d6', borderRadius: 10, backgroundColor: '#fff', fontSize: 16, color: '#333' },
+  button: { width: '90%', paddingVertical: 15, borderRadius: 25, backgroundColor: '#f77ca9', alignItems: 'center', justifyContent: 'center', marginTop: 10 },
+  buttonText: { color: '#fff', fontSize: 18, fontWeight: '600' },
 });

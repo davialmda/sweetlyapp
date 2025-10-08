@@ -1,11 +1,7 @@
 {
   "expo": {
     "name": "teste1",
-<<<<<<< HEAD
-    "slug": "snack-233529cc-5aaf-4999-bccb-e960e8ce5d46",
-=======
-    "slug": "snack-9cb85b43-5277-43cd-ba05-eec7d7914f5d",
->>>>>>> 6c681d2d254d7ba9617edcfed392fe72e8276b35
+    "slug": "teste1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
