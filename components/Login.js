@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { API_URL } from '../config/api';
 
 export default function Login({ onNavigate }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const fazerLogin = () => {
-    if (email && senha) {
-      onNavigate('opcoes');
-    } else {
+  const fazerLogin = async () => {
+    if (!email || !senha) {
       Alert.alert('Erro', 'Digite e-mail e senha');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        Alert.alert('Sucesso', `Bem-vindo!`);
+        onNavigate('opcoes');
+      } else {
+        Alert.alert('Erro', data.message || 'Email ou senha inválidos');
+      }
+    } catch (err) {
+      Alert.alert('Erro', 'Não foi possível conectar ao servidor');
+      console.error(err);
     }
   };
 
