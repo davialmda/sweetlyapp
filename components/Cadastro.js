@@ -21,10 +21,11 @@ export default function Cadastro({ onNavigate }) {
       });
 
       const data = await res.json();
+      console.log('Resposta do backend:', res.status, data);
 
       if (res.ok) {
         Alert.alert('Sucesso', `Cadastro realizado! Bem-vindo, ${nome}`);
-        onNavigate('login');
+        onNavigate('home'); // Vai para Home após cadastro
       } else {
         Alert.alert('Erro', data.message || 'Erro ao cadastrar');
       }
