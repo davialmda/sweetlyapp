@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
-
-const API_URL = 'http://SEU_IP_AQUI:3000';
+import { API_URL } from '../config/api';
 
 export default function Cadastro({ onNavigate }) {
   const [nome, setNome] = useState('');
@@ -15,10 +14,10 @@ export default function Cadastro({ onNavigate }) {
     }
 
     try {
-      const res = await fetch(`${API_URL}/user/register`, {
+      const res = await fetch(`${API_URL}/cadastro`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, email, password: senha }),
+        body: JSON.stringify({ nome, email, senha }),
       });
 
       const data = await res.json();
@@ -27,7 +26,7 @@ export default function Cadastro({ onNavigate }) {
         Alert.alert('Sucesso', `Cadastro realizado! Bem-vindo, ${nome}`);
         onNavigate('login');
       } else {
-        Alert.alert('Erro', data.error || 'Erro ao cadastrar');
+        Alert.alert('Erro', data.message || 'Erro ao cadastrar');
       }
     } catch (err) {
       Alert.alert('Erro', 'Não foi possível conectar ao servidor');
