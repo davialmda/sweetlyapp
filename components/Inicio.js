@@ -2,27 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function Inicio({ onNavigate }) {
-  const handleEscolhaDoce = (doce) => {
-    onNavigate('pedido', { doce });
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Escolha seu Doce!</Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleEscolhaDoce('Cookies')}>
+      <TouchableOpacity style={styles.button} onPress={() => onNavigate('pedido')}>
         <Text style={styles.buttonText}>Cookies</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleEscolhaDoce('Açaí')}>
+      <TouchableOpacity style={styles.button} onPress={() => onNavigate('pedido')}>
         <Text style={styles.buttonText}>Açaí</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleEscolhaDoce('Sorvetes')}>
+      <TouchableOpacity style={styles.button} onPress={() => onNavigate('pedido')}>
         <Text style={styles.buttonText}>Sorvetes</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleEscolhaDoce('Bolos')}>
+      <TouchableOpacity style={styles.button} onPress={() => onNavigate('pedido')}>
         <Text style={styles.buttonText}>Bolos</Text>
       </TouchableOpacity>
     </View>
