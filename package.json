@@ -8,17 +8,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~53.0.22",
-    "expo-status-bar": "~2.2.3",
-    "react": "19.0.0",
-    "react-native": "0.79.6",
-<<<<<<< HEAD
-    "@expo/vector-icons": "^14.1.0",
-    "react-native-paper": "4.9.2"
-=======
-    "react-native-paper": "4.9.2",
-    "@expo/vector-icons": "^14.1.0"
->>>>>>> 6c681d2d254d7ba9617edcfed392fe72e8276b35
+    "@expo/metro-runtime": "~6.1.2",
+    "@expo/vector-icons": "^15.0.2",
+    "expo": "~54.0.0",
+    "expo-status-bar": "^3.0.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.81.4",
+    "react-native-web": "~0.19.12"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
