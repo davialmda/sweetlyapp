@@ -6,6 +6,13 @@ export default function MeusPedidos({ onNavigate, pedidos }) {
     <View style={styles.pedido}>
       <Text style={styles.texto}>Doce: {item.item}</Text>
       <Text style={styles.texto}>Endereço: {item.endereco}</Text>
+
+      <TouchableOpacity
+        style={styles.statusButton}
+        onPress={() => onNavigate('status', { pedido: item })}
+      >
+        <Text style={styles.statusButtonText}>Ver Status</Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -26,6 +33,13 @@ export default function MeusPedidos({ onNavigate, pedidos }) {
       <TouchableOpacity style={styles.button} onPress={() => onNavigate('pedido')}>
         <Text style={styles.buttonText}>Criar Novo Pedido</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#f1c0d6' }]}
+        onPress={() => onNavigate('opcoes')}
+      >
+        <Text style={styles.buttonText}>Voltar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -33,8 +47,31 @@ export default function MeusPedidos({ onNavigate, pedidos }) {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: '#f7a8b8', alignItems: 'center' },
   title: { fontSize: 32, fontWeight: 'bold', color: '#fff', marginBottom: 20 },
-  pedido: { backgroundColor: '#fff', padding: 15, borderRadius: 15, marginVertical: 10, width: '100%' },
+  pedido: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 15,
+    marginVertical: 10,
+    width: '100%',
+  },
   texto: { fontSize: 16, color: '#333' },
-  button: { marginTop: 20, width: '80%', paddingVertical: 15, borderRadius: 25, backgroundColor: '#f77ca9', alignItems: 'center', justifyContent: 'center' },
+  statusButton: {
+    backgroundColor: '#f77ca9',
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    alignSelf: 'flex-start',
+    marginTop: 10,
+  },
+  statusButtonText: { color: '#fff', fontWeight: '600' },
+  button: {
+    marginTop: 15,
+    width: '80%',
+    paddingVertical: 15,
+    borderRadius: 25,
+    backgroundColor: '#f77ca9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   buttonText: { color: '#fff', fontWeight: '600', fontSize: 18 },
 });
