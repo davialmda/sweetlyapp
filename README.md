@@ -4,7 +4,7 @@
 
 Já pensou em um serviço Delivery especializado em doces? O Sweetly é uma aplicação para quem ama sobremesas: cookies, brigadeiros, açaí, bolos, sorvetes e muito mais.
 
-Entrega 01 (Kickoff): 17/10
+
 
 ---
 
@@ -25,7 +25,7 @@ Entrega 01 (Kickoff): 17/10
 ---
 
 ## 1) Visão rápida
-Sweetly é um MVP de delivery de doces com funcionalidades para clientes, entregadores e gerentes:
+Sweetly é um MVP de delivery de doces com funcionalidades para clientes, entregadores e gerentes das confeiterias:
 - Cadastro e login de usuários
 - Criação e acompanhamento de pedidos
 - Painel de entregadores para visualizar e aceitar pedidos
@@ -35,6 +35,7 @@ Sweetly é um MVP de delivery de doces com funcionalidades para clientes, entreg
 
 ## 2) Notion / Documentação
 https://www.notion.so/258918a4b98e80a8bbbde264db92fdfe?v=258918a4b98e8075b38c000cdae19a43&source=copy_link
+
 ![Notion](Notion.png)
 
 ---
@@ -126,12 +127,10 @@ Data da entrega: 17/10
 - [ ] Issue / bug tracker atualizado (no GitHub)
   - Print do filtro/issue list: `docs/issues-sprint01.png`
 - [ ] Testes de Sistema — screencasts individuais por teste + relatório
-  - Relatório: `docs/test-report-sprint01.md`
-  - Screencasts: `docs/recordings/test-cadastro.mp4`, `docs/recordings/test-login.mp4`, etc.
-- [ ] Programação em par — relato em `docs/pair-programming.md` (ou justificativa pública no README)
-- [ ] Quadro da Sprint 01 atualizado refletindo a entrega — prints do board e backlog:
-  - `docs/sprint01-board.png`
-  - `docs/sprint01-backlog.png`
+  - Relatório: 
+  - Screencasts: 
+- [ ] Programação em par 
+- [ ] Quadro da Sprint 01 atualizado refletindo a entrega 
 
 Observação importante: marque cada item com ✅ quando concluído e anexe os arquivos em `docs/` ou insira links públicos no README.
 
