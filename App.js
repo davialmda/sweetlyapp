@@ -3,21 +3,26 @@ import { View, StyleSheet } from 'react-native';
 
 // Componentes
 import Home from './components/Home';
-import Login from './components/Login';//US02
-import Cadastro from './components/Cadastro';//US01
+import Login from './components/Login';
+import Cadastro from './components/Cadastro';
 import PessoaJuridica from './components/PessoaJuridica';
-import CriarPedido from './components/CriarPedido';//US03
-import MeusPedidos from './components/MeusPedidos';//US04
-import OpcaoPedidos from './components/OpcaoPedidos';//US03
+import CriarPedido from './components/CriarPedido';
+import MeusPedidos from './components/MeusPedidos';
+import OpcaoPedidos from './components/OpcaoPedidos';
+import StatusPedidos from './components/StatusPedidos';
 
 export default function App() {
-  const [screen, setScreen] = useState('home'); // Tela inicial agora é Home
+  const [screen, setScreen] = useState('home'); 
   const [pedidos, setPedidos] = useState([]);
   const [doceSelecionado, setDoceSelecionado] = useState('');
+  const [pedidoSelecionado, setPedidoSelecionado] = useState(null);
 
   const handleNavigation = (screenName, params) => {
-    if (params && params.doce) {
+    if (params?.doce) {
       setDoceSelecionado(params.doce);
+    }
+    if (params?.pedido) {
+      setPedidoSelecionado(params.pedido);
     }
     setScreen(screenName);
   };
@@ -42,7 +47,16 @@ export default function App() {
         />
       )}
       {screen === 'meusPedidos' && (
-        <MeusPedidos onNavigate={handleNavigation} pedidos={pedidos} />
+        <MeusPedidos
+          onNavigate={handleNavigation}
+          pedidos={pedidos}
+        />
+      )}
+      {screen === 'status' && pedidoSelecionado && (
+        <StatusPedidos
+          pedido={pedidoSelecionado}
+          onNavigate={handleNavigation}
+        />
       )}
     </View>
   );
