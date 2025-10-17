@@ -77,7 +77,7 @@ Usuário realiza login com e-mail e senha. Validações de credenciais incorreta
 
 ### US03 – Criar pedido de entrega  
 Cliente cria pedido informando item e endereço com validação de dados.  
-![US03](docs/images/US03-CRIARPEDIDO).png)
+![US03](docs/images/US03(CRIARPEDIDO).png)
 
 ### US04 – Listar meus pedidos  
 Cliente visualiza todos os pedidos realizados e acompanha os status.  
@@ -141,7 +141,7 @@ Observação importante: marque cada item com ✅ quando concluído e anexe os a
   - images/
     - US01-CADASTRO.png
     - US02-LOGIN.png
-    - ... (ou usar o mesmo nome das imagens acima)
+    - ... 
   - sprint01-board.png
   - sprint01-backlog.png
   - activity-diagram-v2.png
@@ -158,7 +158,6 @@ Observação importante: marque cada item com ✅ quando concluído e anexe os a
 ---
 
 ## 8) Testes de sistema (modelo de relatório)
-Arquivo: `docs/test-report-sprint01.md` (preencher com os resultados)
 
 Modelo:
 - Teste: Cadastro de Usuário  
@@ -167,13 +166,16 @@ Modelo:
   1. Abrir página /signup
   2. Preencher nome, email, senha
   3. Submeter formulário
-  Resultado: OK / Falha (detalhar)  
+  Resultado: OK  
   Screencast: `docs/recordings/test-cadastro.mp4` ou <URL>
 
 - Teste: Login  
   Data: <07/10>  
-  Passos: ...  
-  Resultado: Funcionando 
+  Passos:
+   1. Abrir página / login
+   2. preencher e-mail e senha;
+   3. entrar
+  Resultado: OK
   Screencast: 
 
 
@@ -181,7 +183,7 @@ Modelo:
 
 ## 9) Programação em par (Pair Programming)
 
-No Backend foi realizado programação por pares nas terças-feiras.
+Em ambos foram utilizadas técnicas de programação por pares. (Frontend e Backend)
 
 ---
 
