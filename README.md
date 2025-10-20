@@ -66,6 +66,8 @@ Antes de começar, instale:
 
 ## 5) Diagrama de arquitetura:
 
+![Arquiteura](docs/images/diagramadearquitetura.png)
+
 ---
 
 ## 6) Evidências da Entrega 03 — Checklist 
