@@ -108,7 +108,7 @@ Modelo:
   2. Preencher nome, email, senha
   3. Submeter formulário
   Resultado: OK  
-  Screencast: ![Screencast](docs/images/MicrosoftTeams-video.mp4)
+  Screencast: ![Screencast](docs/image/cadastroscreen.png)
 
 - Teste: Login  
   Data: <07/10>  
@@ -117,7 +117,16 @@ Modelo:
    2. preencher e-mail e senha;
    3. entrar
   Resultado: OK
-  Screencast: ![Screencast](docs/images/MicrosoftTeams-video.mp4)
+  Screencast: ![Screencast](docs/image/loginscreen.png)
+
+- Teste: Criar Pedido  
+  Data: <07/10>  
+  Passos:
+   1. Abrir página / novo-pedido
+   2. escolher item e endereço;
+   3. confirmar pedido
+  Resultado: OK
+  Screencast: ![Screencast](docs/image/pedidoscreen.png)
 
 
 ---
