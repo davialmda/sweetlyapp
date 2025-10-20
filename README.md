@@ -1,7 +1,7 @@
 # 🚀 Sweetly
 
 
-![Logo](docs/images/Logotipo.png)
+![Logo](docs/images/Logotipo.jpg)
 
 📦 Aplicativo de delivery de doces — disciplina: **Análise e Projeto de Software**
 
