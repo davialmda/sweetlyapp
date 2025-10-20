@@ -1,5 +1,8 @@
 # 🚀 Sweetly
 
+
+![Logo](docs/images/Logotipo.png)
+
 📦 Aplicativo de delivery de doces — disciplina: **Análise e Projeto de Software**
 
 Já pensou em um serviço Delivery especializado em doces? O Sweetly é uma aplicação para quem ama sobremesas: cookies, brigadeiros, açaí, bolos, sorvetes e muito mais.
@@ -105,7 +108,7 @@ Modelo:
   2. Preencher nome, email, senha
   3. Submeter formulário
   Resultado: OK  
-  Screencast: 
+  Screencast: ![Screencast](docs/images/MicrosoftTeams-video.mp4)
 
 - Teste: Login  
   Data: <07/10>  
@@ -114,7 +117,7 @@ Modelo:
    2. preencher e-mail e senha;
    3. entrar
   Resultado: OK
-  Screencast: 
+  Screencast: ![Screencast](docs/images/MicrosoftTeams-video.mp4)
 
 
 ---
@@ -131,7 +134,6 @@ Em ambos foram utilizadas técnicas de programação por pares. (Frontend e Back
 ## 10) Deployment
 - Plataforma sugerida: 
 - URL do deploy: 
-- O screencast demonstrando as novas histórias deve mostrar a URL do deploy no vídeo.
 - Instruções:
 Use este arquivo como referência e mantenha o README apontando para as URLs de deploy (Front-end e API).
 
