@@ -126,7 +126,7 @@ Modelo:
 
 Em ambos foram utilizadas técnicas de programação por pares. (Frontend e Backend)
 
-<>
+![ProgramacaoPar](docs/images/evidência2.png)
 <>
 
 ---
