@@ -13,14 +13,13 @@ Já pensou em um serviço Delivery especializado em doces? O Sweetly é uma apli
 - 2) Notion / Documentação
 - 3) Pré-requisitos
 - 4) Como rodar localmente
-- 5) Histórias implementadas (US)
+- 5) Diagrama de arquitetura
 - 6) Evidências da Entrega 01 (checklist)
-- 7) Onde colocar os arquivos / estrutura sugerida
-- 8) Testes de sistema
-- 9) Programação em par
-- 10) Deployment
-- 11) Atualizando este README
-- 12) Contato
+- 7) Testes de sistema
+- 8) Programação em par
+- 9) Deployment
+- 10) Atualizando este README
+- 11) Contato
 
 ---
 
@@ -65,99 +64,36 @@ Antes de começar, instale:
 
 ---
 
-## 5) Histórias (US) — visuais e resumo
-
-### US01 – Cadastro de usuário  
-Usuário cadastra informando nome, email e senha. Validações de dados e email existente incluídas.  
-![US01](docs/images/US01(CADASTRO).png)
-
-### US02 – Login no sistema  
-Usuário realiza login com e-mail e senha. Validações de credenciais incorretas incluídas.  
-![US02](docs/images/US02(LOGIN).png)
-
-### US03 – Criar pedido de entrega  
-Cliente cria pedido informando item e endereço com validação de dados.  
-![US03](docs/images/US03(CRIARPEDIDO).png)
-
-### US04 – Listar meus pedidos  
-Cliente visualiza todos os pedidos realizados e acompanha os status.  
-![US04](docs/images/US04(LISTARPEDIDOS).png)
-
-### US05 – Ver pedidos disponíveis (Entregador)  
-Entregador visualiza pedidos pendentes para aceitar.  
-![US05](docs/images/US05(VERPEDIDOS).png)
-
-### US06 – Aceitar pedido (Entregador)  
-Entregador aceita o pedido para realizar entrega.  
-![US06](docs/images/US06(ACEITARPEDIDO).png)
-
-### US07 – Marcar pedido como entregue  
-Entregador finaliza entrega e atualiza status do pedido.  
-![US07](docs/images/US07(ENTREGUE).png)
-
-### US08 – Gerenciar usuários (Gerente)  
-Gerente visualiza lista de usuários e detalhes.  
-![US08](docs/images/US08(GERENCIARUSUARIOS).png)
-
-### US09 – Excluir pedido (Gerente)  
-Gerente exclui pedidos incorretos ou inválidos.  
-![US09](docs/images/US09(EXCLUIRPEDIDO).png)
-
-### US10 – Logs de alteração (Gerente)  
-Gerente visualiza histórico de alterações e pode filtrar informações.  
-![US10](docs/images/US10(LOGS).png)
+## 5) Diagrama de arquitetura:
 
 ---
 
-## 6) Evidências da Entrega 01 — Checklist (preencha)
-Data da entrega: 17/10
+## 6) Evidências da Entrega 03 — Checklist 
+Data da entrega: 21/10
 
-- [ ] Seleção de histórias para implementar (pelo menos 3) — listar aqui as US escolhidas e marcar as implementadas
-  - Histórias escolhidas nesta entrega: US01, US02, US03 (exemplo)
-- [ ] Criação de Sprint no Trello — link do quadro + print (`docs/sprint01-board.png`)
-  - Quadro Trello: <INSERIR_LINK_DO_QUADRO>
-  - Sprint: Sprint 01 — início: 17/10 — fim: <INSERIR_DATA_FIM>
-- [ ] Atualização do diagrama de atividades — `docs/activity-diagram-v2.png`
+- [✅] Seleção de histórias para implementar (pelo menos 3) — listar aqui as US escolhidas e marcar as implementadas
+  - Histórias escolhidas nesta entrega: US01: Cadastro de usuário, US02: Login no sistema, US03: Criar pedido de entrega 
+- [✅] Criação de Sprint no Notion 
+  - Quadro Notion: <https://www.notion.so/US03-Criar-pedido-de-entrega-258918a4b98e80a78416db40925d06f7?source=copy_link>
+  - Sprint: Sprint 01 — início: 29/09 — fim: <07/10>
+- [✅] Atualização do diagrama de atividades 
   - Nota: descreva rapidamente as principais mudanças
-- [ ] Ambiente de versionamento atuante — commits frequentes (mínimo semanal)
-  - Evidência: `docs/commits-weekly.png` (gráfico ou log)
-- [ ] Deployment das novas histórias — URL pública do deploy + screencast
+- [✅] Ambiente de versionamento atuante
+  - Evidência: `docs/commits-weekly.png`
+- [✅] Deployment das novas histórias — URL pública do deploy + screencast
   - URL do deploy: <INSERIR_URL_DO_DEPLOY>
-  - Screencast principal: <INSERIR_URL_DO_VÍDEO> (A URL DO DEPLOY PRECISA APARECER NO VÍDEO)
-- [ ] Issue / bug tracker atualizado (no GitHub)
-  - Print do filtro/issue list: `docs/issues-sprint01.png`
-- [ ] Testes de Sistema — screencasts individuais por teste + relatório
+  - Screencast principal: <INSERIR_URL_DO_VÍDEO>
+- [✅] Issue / bug tracker atualizado
+- [✅] Testes de Sistema 
   - Relatório: 
   - Screencasts: 
-- [ ] Programação em par 
-- [ ] Quadro da Sprint 01 atualizado refletindo a entrega 
-
-Observação importante: marque cada item com ✅ quando concluído e anexe os arquivos em `docs/` ou insira links públicos no README.
+- [✅] Programação em par 
+- [✅] Quadro da Sprint 01 atualizado refletindo a entrega 
 
 ---
 
-## 7) Estrutura sugerida (onde colocar arquivos)
-- docs/
-  - images/
-    - US01-CADASTRO.png
-    - US02-LOGIN.png
-    - ... 
-  - sprint01-board.png
-  - sprint01-backlog.png
-  - activity-diagram-v2.png
-  - commits-weekly.png
-  - issues-sprint01.png
-  - test-report-sprint01.md
-  - pair-programming.md
-  - recordings/
-    - screencast-new-stories.mp4 (ou link externo)
-    - test-cadastro.mp4
-    - test-login.mp4
-    - test-listagem.mp4
 
----
-
-## 8) Testes de sistema (modelo de relatório)
+## 7) Testes de sistema (modelo de relatório)
 
 Modelo:
 - Teste: Cadastro de Usuário  
@@ -167,7 +103,7 @@ Modelo:
   2. Preencher nome, email, senha
   3. Submeter formulário
   Resultado: OK  
-  Screencast: `docs/recordings/test-cadastro.mp4` ou <URL>
+  Screencast: 
 
 - Teste: Login  
   Data: <07/10>  
@@ -185,26 +121,56 @@ Modelo:
 
 Em ambos foram utilizadas técnicas de programação por pares. (Frontend e Backend)
 
+<>
+<>
+
 ---
 
 ## 10) Deployment
 - Plataforma sugerida: 
 - URL do deploy: 
 - O screencast demonstrando as novas histórias deve mostrar a URL do deploy no vídeo.
-- Instruções mínimas a incluir (em `docs/deploy.md` ou aqui):
-  - Como configurar variáveis de ambiente
-  - Passos de build e deploy (comandos)
-  - Como reproduzir o ambiente localmente com as mesmas variáveis
+- Instruções:
+Use este arquivo como referência e mantenha o README apontando para as URLs de deploy (Front-end e API).
 
 ---
 
-## 11) Como atualizar este README
+##  Variáveis de Ambiente
+
+As variáveis abaixo são exemplos. Ajuste os valores conforme o seu projeto.
+
+### 1.1 Front-end (sweetlyapp)
+Importante: mantenha consistência com o bundler do projeto.
+- Create React App (CRA) usa prefixo REACT_APP_
+- Vite usa prefixo VITE_
+
+Recomendado para este projeto (CRA):
+- REACT_APP_API_URL: URL pública da API (produção)
+- REACT_APP_ENV: ambiente atual (ex.: production, staging)
+- REACT_APP_VERSION: versão ou sha do commit (opcional)
+
+Exemplos de arquivos:
+
+Arquivo: .env.local (para desenvolvimento local)
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_ENV=development
+
+Arquivo: .env.production (usado no build de produção)
+REACT_APP_API_URL=https://sweetlyapi.onrender.com
+REACT_APP_ENV=production
+
+Se usar Vite, troque REACT_APP_API_URL por VITE_API_URL em todos os lugares (código e arquivos .env):
+VITE_API_URL=...
+
+---
+
+## 11) Como atualizar esse README
 1. Adicione/atualize imagens e vídeos em `docs/` conforme a estrutura sugerida.
 2. Substitua os placeholders `<INSERIR_...>` por links ou paths reais.
 3. Commit e push:
    - git checkout -b feature/docs-sprint01
    - git add README.md docs/
-   - git commit -m "docs(sprint01): evidências Entrega 01"
+   - git commit -m "docs(sprint01): evidências Entrega 03"
    - git push origin feature/docs-sprint01
 4. Abra PR para `main` com checklist preenchido e links para issues/PRs relacionados.
 
