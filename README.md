@@ -35,7 +35,7 @@ Sweetly é um MVP de delivery de doces com funcionalidades para clientes, entreg
 ## 2) Notion / Documentação
 https://www.notion.so/258918a4b98e80a8bbbde264db92fdfe?v=258918a4b98e8075b38c000cdae19a43&source=copy_link
 
-![Notion](Notion.png)
+![Notion](docs/images/notion03.png)
 
 ---
 
