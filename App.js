@@ -1,32 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { View, StyleSheet } from 'react-native';
-
-// Componentes
-import Home from './components/Home';
-import Login from './components/Login';//US02
-import Cadastro from './components/Cadastro';//US01
-import PessoaJuridica from './components/PessoaJuridica';
-import CriarPedido from './components/CriarPedido';//US03
-import MeusPedidos from './components/MeusPedidos';//US04
-import OpcaoPedidos from './components/OpcaoPedidos';//US03
-
-export default function App() {
-  const [screen, setScreen] = useState('home'); // Tela inicial agora é Home
-  const [pedidos, setPedidos] = useState([]);
-  const [doceSelecionado, setDoceSelecionado] = useState('');
-
-  const handleNavigation = (screenName, params) => {
-    if (params && params.doce) {
-      setDoceSelecionado(params.doce);
-    }
-    setScreen(screenName);
-  };
-
-  const adicionarPedido = (pedido) => {
-    setPedidos((prev) => [...prev, pedido]);
-    setScreen('meusPedidos');
-=======
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
 
 export default function App() {
@@ -38,7 +10,6 @@ export default function App() {
 
   const navigate = (screen) => {
     setCurrentScreen(screen);
->>>>>>> main
   };
 
   // Tela Home
@@ -224,38 +195,16 @@ export default function App() {
   // Tela Criar Pedido
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
-      {screen === 'home' && <Home onNavigate={handleNavigation} />}
-      {screen === 'login' && <Login onNavigate={handleNavigation} />}
-      {screen === 'cadastro' && <Cadastro onNavigate={handleNavigation} />}
-      {screen === 'pj' && <PessoaJuridica onNavigate={handleNavigation} />}
-      {screen === 'opcoes' && <OpcaoPedidos onNavigate={handleNavigation} />}
-      {screen === 'pedido' && (
-        <CriarPedido
-          onNavigate={handleNavigation}
-          adicionarPedido={adicionarPedido}
-          doceSelecionado={doceSelecionado}
-        />
-      )}
-      {screen === 'meusPedidos' && (
-        <MeusPedidos onNavigate={handleNavigation} pedidos={pedidos} />
-      )}
-=======
       <Text style={styles.title}>Criar Pedido</Text>
       <Text style={styles.subtitle}>Pedido em desenvolvimento...</Text>
       <TouchableOpacity style={styles.button} onPress={() => navigate('inicio')}>
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
->>>>>>> main
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-  container: { flex: 1, backgroundColor: '#f7a8b8' },
-});
-=======
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -303,4 +252,3 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
->>>>>>> main
