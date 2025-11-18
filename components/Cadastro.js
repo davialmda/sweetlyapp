@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios';
 
 export default function Cadastro({ onNavigate }) {
   const [nome, setNome] = useState('');
@@ -7,7 +8,7 @@ export default function Cadastro({ onNavigate }) {
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  const fazerCadastro = () => {
+  const fazerCadastro = async () => {
     if (!nome || !email || !senha || !confirmarSenha) {
       Alert.alert('Erro', 'Todos os campos são obrigatórios!');
       return;
@@ -18,8 +19,20 @@ export default function Cadastro({ onNavigate }) {
       return;
     }
 
-    Alert.alert('Sucesso', `Cadastro realizado! Bem-vindo, ${nome}`);
-    onNavigate('opcoes'); // navega para opções
+    try {
+      const response = await axios.post('http://192.168.0.7:3000/api/cadastro', {
+        name: nome,
+        email,
+        password: senha
+      });
+      
+      if (response.data.user) {
+        Alert.alert('Sucesso', `Cadastro realizado! Bem-vindo, ${nome}`);
+        onNavigate('opcoes');
+      }
+    } catch (error) {
+      Alert.alert('Erro', error.response?.data?.error || 'Falha na conexão');
+    }
   };
 
   return (

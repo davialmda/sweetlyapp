@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios';
 
 export default function LoginEntregador({ onNavigate }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const fazerLogin = () => {
-    if (email && senha) {
-      onNavigate('entregadorPedidos');
-    } else {
+  const fazerLogin = async () => {
+    if (!email || !senha) {
       Alert.alert('Erro', 'Digite e-mail e senha');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://192.168.0.7:3000/api/login', {
+        email,
+        password: senha
+      });
+      
+      if (response.data.user) {
+        onNavigate('entregadorPedidos');
+      }
+    } catch (error) {
+      Alert.alert('Erro', error.response?.data?.error || 'Falha na conexão');
     }
   };
 
