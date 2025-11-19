@@ -15,7 +15,8 @@ export default function LoginEntregador({ onNavigate }) {
     try {
       const response = await axios.post('http://192.168.0.7:3000/api/login', {
         email,
-        password: senha
+        password: senha,
+        role: 'entregador'
       });
       
       if (response.data.user) {
