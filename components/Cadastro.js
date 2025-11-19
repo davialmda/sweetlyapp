@@ -1,38 +1,69 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
-
-const API_URL = 'http://.:3000'; // coloca o IP do seu computador
+import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
+import axios from 'axios';
 
 export default function Cadastro({ onNavigate }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!nome) {
+      newErrors.nome = 'Nome é obrigatório';
+    } else if (nome.length < 2) {
+      newErrors.nome = 'Nome deve ter pelo menos 2 caracteres';
+    }
+    
+    if (!email) {
+      newErrors.email = 'E-mail é obrigatório';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'E-mail inválido';
+    }
+    
+    if (!senha) {
+      newErrors.senha = 'Senha é obrigatória';
+    } else if (senha.length < 6) {
+      newErrors.senha = 'Senha deve ter pelo menos 6 caracteres';
+    }
+    
+    if (!confirmarSenha) {
+      newErrors.confirmarSenha = 'Confirmação de senha é obrigatória';
+    } else if (senha !== confirmarSenha) {
+      newErrors.confirmarSenha = 'As senhas não coincidem';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const fazerCadastro = async () => {
-    if (!nome || !email || !senha) {
-      Alert.alert('Erro', 'Todos os campos são obrigatórios!');
-      return;
-    }
+    if (!validateForm()) return;
 
+    setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/user/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, email, password: senha }),
+      const response = await axios.post('http://192.168.0.7:3000/api/cadastro', {
+        name: nome,
+        email,
+        password: senha
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
+      
+      if (response.data.user) {
         Alert.alert('Sucesso', `Cadastro realizado! Bem-vindo, ${nome}`);
-        onNavigate('login');
-      } else {
-        Alert.alert('Erro', data.error || 'Erro ao cadastrar');
+        onNavigate('opcoes');
       }
-    } catch (err) {
-      Alert.alert('Erro', 'Não foi possível conectar ao servidor');
-      console.error(err);
+    } catch (error) {
+      if (error.code === 'NETWORK_ERROR' || !error.response) {
+        Alert.alert('Erro de Conexão', 'Verifique sua internet e se o servidor está rodando');
+      } else {
+        Alert.alert('Erro', error.response?.data?.error || 'Falha no cadastro');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,130 +71,82 @@ export default function Cadastro({ onNavigate }) {
     <View style={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Digite seu nome"
-        value={nome}
-        onChangeText={setNome}
-        placeholderTextColor="#f77ca9"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Digite seu e-mail"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        placeholderTextColor="#f77ca9"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Digite sua senha"
-        secureTextEntry
-        value={senha}
-        onChangeText={setSenha}
-        placeholderTextColor="#f77ca9"
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input, errors.nome && styles.inputError]}
+          placeholder="Digite seu nome"
+          value={nome}
+          onChangeText={(text) => {
+            setNome(text);
+            if (errors.nome) setErrors({...errors, nome: null});
+          }}
+          placeholderTextColor="#f77ca9"
+        />
+        {errors.nome && <Text style={styles.errorText}>{errors.nome}</Text>}
+      </View>
 
-      <TouchableOpacity style={styles.button} onPress={fazerCadastro}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
-      </TouchableOpacity>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input, errors.email && styles.inputError]}
+          placeholder="Digite seu e-mail"
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+            if (errors.email) setErrors({...errors, email: null});
+          }}
+          keyboardType="email-address"
+          placeholderTextColor="#f77ca9"
+          autoCapitalize="none"
+        />
+        {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+      </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => onNavigate('login')}>
-        <Text style={styles.buttonText}>Voltar</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input, errors.senha && styles.inputError]}
+          placeholder="Digite sua senha"
+          secureTextEntry
+          value={senha}
+          onChangeText={(text) => {
+            setSenha(text);
+            if (errors.senha) setErrors({...errors, senha: null});
+          }}
+          placeholderTextColor="#f77ca9"
+        />
+        {errors.senha && <Text style={styles.errorText}>{errors.senha}</Text>}
+      </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f7a8b8',
-    padding: 20,
-  },
-  title: { fontSize: 32, fontWeight: 'bold', marginBottom: 40, color: '#fff' },
-  input: {
-    width: '80%',
-    padding: 15,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderColor: '#f1c0d6',
-    borderRadius: 10,
-    fontSize: 16,
-    backgroundColor: '#fff',
-    color: '#333',
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  button: {
-    marginTop: 20,
-    width: '80%',
-    paddingVertical: 15,
-    borderRadius: 25,
-    backgroundColor: '#f77ca9',
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3,
-  },
-  buttonText: { fontSize: 18, color: '#fff', fontWeight: '600' },
-});
-=======
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input, errors.confirmarSenha && styles.inputError]}
+          placeholder="Confirme sua senha"
+          secureTextEntry
+          value={confirmarSenha}
+          onChangeText={(text) => {
+            setConfirmarSenha(text);
+            if (errors.confirmarSenha) setErrors({...errors, confirmarSenha: null});
+          }}
+          placeholderTextColor="#f77ca9"
+        />
+        {errors.confirmarSenha && <Text style={styles.errorText}>{errors.confirmarSenha}</Text>}
+      </View>
 
-export default function Cadastro({ onNavigate }) {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-
-  const fazerCadastro = () => {
-    // Simular o cadastro
-    Alert.alert('Cadastro realizado!', `Bem-vindo, ${nome}`);
-    onNavigate('login');
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Digite seu nome"
-        value={nome}
-        onChangeText={setNome}
-        placeholderTextColor="#f77ca9"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Digite seu e-mail"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        placeholderTextColor="#f77ca9"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Digite sua senha"
-        secureTextEntry
-        value={senha}
-        onChangeText={setSenha}
-        placeholderTextColor="#f77ca9"
-      />
-
-      <TouchableOpacity
-        style={styles.button}
+      <TouchableOpacity 
+        style={[styles.button, loading && styles.buttonDisabled]} 
         onPress={fazerCadastro}
+        disabled={loading}
       >
-        <Text style={styles.buttonText}>Cadastrar</Text>
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Cadastrar</Text>
+        )}
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => onNavigate('login')}
+        style={[styles.button, { backgroundColor: '#f1c0d6' }]}
+        onPress={() => onNavigate('home')}
+        disabled={loading}
       >
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
@@ -172,48 +155,57 @@ export default function Cadastro({ onNavigate }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f7a8b8', // Rosa pastel
-    padding: 20,
+  container: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: '#f7a8b8', 
+    padding: 20 
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#fff',
+  title: { 
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    marginBottom: 40, 
+    color: '#fff' 
   },
-  input: {
+  inputContainer: {
     width: '80%',
-    padding: 15,
     marginVertical: 10,
-    borderWidth: 1,
-    borderColor: '#f1c0d6',
-    borderRadius: 10,
-    fontSize: 16,
-    backgroundColor: '#fff',
-    color: '#333',
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
   },
-  button: {
-    marginTop: 20,
-    width: '80%',
-    paddingVertical: 15,
-    borderRadius: 25,
-    backgroundColor: '#f77ca9',
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3,
+  input: { 
+    width: '100%', 
+    padding: 15, 
+    borderWidth: 1, 
+    borderColor: '#f1c0d6', 
+    borderRadius: 10, 
+    fontSize: 16, 
+    backgroundColor: '#fff', 
+    color: '#333' 
   },
-  buttonText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: '600',
+  inputError: {
+    borderColor: '#ff6b6b',
+  },
+  errorText: {
+    color: '#ff6b6b',
+    fontSize: 12,
+    marginTop: 5,
+    marginLeft: 5,
+  },
+  button: { 
+    marginTop: 20, 
+    width: '80%', 
+    paddingVertical: 15, 
+    borderRadius: 25, 
+    backgroundColor: '#f77ca9', 
+    alignItems: 'center', 
+    justifyContent: 'center' 
+  },
+  buttonDisabled: { 
+    backgroundColor: '#ccc' 
+  },
+  buttonText: { 
+    fontSize: 18, 
+    color: '#fff', 
+    fontWeight: '600' 
   },
 });
->>>>>>> 6c681d2d254d7ba9617edcfed392fe72e8276b35
