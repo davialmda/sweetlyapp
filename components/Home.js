@@ -23,7 +23,11 @@ export default function Home({ onNavigate }) {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => onNavigate('pj')}>
-        <Text style={styles.buttonText}>Pessoa Jurídica</Text>
+        <Text style={styles.buttonText}>Cadastro Pessoa Jurídica</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => onNavigate('loginPJ')}>
+        <Text style={styles.buttonText}>Login Pessoa Jurídica</Text>
       </TouchableOpacity>
     </View>
   );

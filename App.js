@@ -6,6 +6,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Cadastro from './components/Cadastro';
 import PessoaJuridica from './components/PessoaJuridica';
+import LoginPessoaJuridica from './components/LoginPessoaJuridica';
+import OpcoesPessoaJuridica from './components/OpcoesPessoaJuridica';
 import CriarPedido from './components/CriarPedido';
 import MeusPedidos from './components/MeusPedidos';
 import OpcaoPedidos from './components/OpcaoPedidos';
@@ -44,6 +46,8 @@ export default function App() {
       {screen === 'login' && <Login onNavigate={handleNavigation} />}
       {screen === 'cadastro' && <Cadastro onNavigate={handleNavigation} />}
       {screen === 'pj' && <PessoaJuridica onNavigate={handleNavigation} />}
+      {screen === 'loginPJ' && <LoginPessoaJuridica onNavigate={handleNavigation} />}
+      {screen === 'opcoesPJ' && <OpcoesPessoaJuridica onNavigate={handleNavigation} />}
       {screen === 'opcoes' && <OpcaoPedidos onNavigate={handleNavigation} />}
       {screen === 'pedido' && <CriarPedido onNavigate={handleNavigation} adicionarPedido={adicionarPedido} />}
       {screen === 'meusPedidos' && <MeusPedidos onNavigate={handleNavigation} pedidos={pedidos} />}

@@ -13,17 +13,20 @@ export default function LoginEntregador({ onNavigate }) {
     }
 
     try {
-      const response = await axios.post('http://192.168.0.7:3000/api/login', {
+      const response = await axios.post('http://192.168.0.7:3000/courier/login', {
         email,
-        password: senha,
-        role: 'entregador'
+        password: senha
       });
       
-      if (response.data.user) {
+      if (response.data.courier) {
         onNavigate('entregadorPedidos');
       }
     } catch (error) {
-      Alert.alert('Erro', error.response?.data?.error || 'Falha na conexão');
+      if (error.code === 'NETWORK_ERROR' || !error.response) {
+        Alert.alert('Erro de Conexão', 'Verifique sua internet e se o servidor está rodando');
+      } else {
+        Alert.alert('Erro', error.response?.data?.error || 'Falha no login');
+      }
     }
   };
 
